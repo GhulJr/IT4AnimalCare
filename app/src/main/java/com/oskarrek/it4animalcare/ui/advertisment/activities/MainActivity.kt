@@ -1,4 +1,4 @@
-package com.oskarrek.it4animalcare.ui.activities
+package com.oskarrek.it4animalcare.ui.advertisment.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
