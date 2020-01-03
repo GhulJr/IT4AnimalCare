@@ -15,13 +15,13 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.oskarrek.it4animalcare.R
 
-class UserActivity : AppCompatActivity() {
+class AdvertismentsActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+        setContentView(R.layout.activity_advertisments)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
