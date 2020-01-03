@@ -10,16 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.oskarrek.it4animalcare.ui.advertisment.activities.UserActivity"
+            android:name="com.oskarrek.it4animalcare.ui.advertisment.activities.BaseActivity"
             android:label="@string/title_activity_user"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.oskarrek.it4animalcare.ui.advertisment.activities.MainActivity">
-
         </activity>
     </application>
 

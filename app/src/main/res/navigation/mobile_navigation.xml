@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.oskarrek.it4animalcare.ui.advertisment.fragments.gallery.GalleryFragment"
+        android:name="com.oskarrek.it4animalcare.ui.advertisment.fragments.notice_board.NoticeBoardFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_notice_board" />
 
     <fragment
         android:id="@+id/nav_slideshow"

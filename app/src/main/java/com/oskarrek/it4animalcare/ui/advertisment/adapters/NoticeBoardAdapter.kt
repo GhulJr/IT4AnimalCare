@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdvertismentsListAdapter() : RecyclerView.Adapter<AdvertismentsListAdapter.AdvertismentViewHolder>() {
+class NoticeBoardAdapter() : RecyclerView.Adapter<NoticeBoardAdapter.AdvertismentViewHolder>() {
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertismentViewHolder {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
