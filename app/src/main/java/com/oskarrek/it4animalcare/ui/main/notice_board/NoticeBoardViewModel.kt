@@ -1,12 +1,10 @@
-package com.oskarrek.it4animalcare.ui.advertisment.fragments.notice_board
+package com.oskarrek.it4animalcare.ui.main.notice_board
 
-import androidx.databinding.Bindable
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.BaseObservable
 import androidx.lifecycle.ViewModel
 import com.oskarrek.it4animalcare.data.model.AdvertisementModel
 
-class NoticeBoardViewModel : ViewModel(){
+class NoticeBoardViewModel : ViewModel() {
 
     val advertsements = emptyList<AdvertisementModel>()
 

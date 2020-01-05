@@ -1,4 +1,9 @@
 package com.oskarrek.it4animalcare.data.model
 
-class DeadlineModel {
+data class DeadlineModel(
+    val id : Int,
+    val timeInMillis : Long,
+    val isTaken : Boolean
+) {
+    constructor(timeInMillis : Long) : this(0, timeInMillis, false)
 }

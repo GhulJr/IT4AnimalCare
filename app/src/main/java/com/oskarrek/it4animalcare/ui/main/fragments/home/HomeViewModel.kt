@@ -1,4 +1,4 @@
-package com.oskarrek.it4animalcare.ui.advertisment.fragments.home
+package com.oskarrek.it4animalcare.ui.main.fragments.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,4 +1,4 @@
-package com.oskarrek.it4animalcare.ui.advertisment.activities
+package com.oskarrek.it4animalcare.ui.main
 
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,13 +15,13 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import com.oskarrek.it4animalcare.R
 
-class BaseActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_advertisements)
+        setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 

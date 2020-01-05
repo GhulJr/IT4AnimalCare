@@ -1,4 +1,4 @@
-package com.oskarrek.it4animalcare.ui.advertisment.fragments.share
+package com.oskarrek.it4animalcare.ui.main.fragments.share
 
 import android.os.Bundle
 import android.view.LayoutInflater
