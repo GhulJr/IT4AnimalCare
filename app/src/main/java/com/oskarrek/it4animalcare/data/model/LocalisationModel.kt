@@ -3,7 +3,7 @@ package com.oskarrek.it4animalcare.data.model
 data class LocalisationModel(
     val id : Int,
     val city : String,
-    val post_code : String
+    val postCode : String
 ) {
     constructor(
         city: String,
@@ -11,6 +11,6 @@ data class LocalisationModel(
     ) : this(0, city, post_code)
 
     override fun toString(): String {
-        return "$city, $post_code"
+        return "$city, $postCode"
     }
 }

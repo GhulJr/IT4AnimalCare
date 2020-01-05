@@ -11,9 +11,9 @@ fun List<DeadlineModel>.asString() : String =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
     val joiner = StringJoiner(", ")
     for (deadline in this) {
-        joiner.add(deadline.timeInMillis.asDate("dd.MM.yy"))
+        joiner.add(deadline.timeSpan.asDate("dd.MM.yy"))
     }
     joiner.toString()
 } else {
-    this[0].timeInMillis.asDate("dd.MM.yy")
+    this[0].timeSpan.asDate("dd.MM.yy")
 }
