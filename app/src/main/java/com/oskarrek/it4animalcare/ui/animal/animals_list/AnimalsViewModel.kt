@@ -1,4 +1,4 @@
-package com.oskarrek.it4animalcare.ui.aniaml.ui.animals
+package com.oskarrek.it4animalcare.ui.animal.animals_list
 
 import androidx.lifecycle.ViewModel
 
