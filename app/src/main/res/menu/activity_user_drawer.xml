@@ -3,36 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_tools" />
-    </group>
+    <group android:checkableBehavior="single"/>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_my_account"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/menu_my_account" />
+
+    <item
+        android:id="@+id/nav_add_advertisement"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="@string/menu_add_advertisement" />
+
+    <item
+        android:id="@+id/nav_my_advertisements"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="@string/menu_my_advertisements" />
+
+    <item
+        android:id="@+id/nav_my_animals"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/menu_my_animals" />
+
+    <item
+        android:id="@+id/nav_my_offers"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="@string/menu_my_offers" />
+
 
 </menu>

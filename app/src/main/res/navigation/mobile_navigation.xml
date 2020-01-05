@@ -3,34 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_my_account">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_my_account"
         android:name="com.oskarrek.it4animalcare.ui.main.fragments.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_add_advertisement"
         android:name="com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_notice_board" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_my_advertisements"
         android:name="com.oskarrek.it4animalcare.ui.main.fragments.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
+        android:id="@+id/nav_my_animals"
         android:name="com.oskarrek.it4animalcare.ui.main.fragments.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_my_offers"
         android:name="com.oskarrek.it4animalcare.ui.main.fragments.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />

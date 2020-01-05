@@ -14,4 +14,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="menu_add_advertisement">Dodaj ogłoszenie</string>
+    <string name="menu_my_advertisements">Moje ogłoszenia</string>
+    <string name="menu_my_offers">Moje oferty</string>
+    <string name="menu_my_account">Moje konto</string>
+    <string name="menu_my_animals">Zwierzęta</string>
 </resources>
