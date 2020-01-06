@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.data.model.AnimalModel
 import com.oskarrek.it4animalcare.data.model.DeadlineModel
+import com.oskarrek.it4animalcare.ext.getSex
+import kotlinx.android.synthetic.main.item_animal.view.*
 
 class AnimalsAdapter : RecyclerView.Adapter<AnimalsAdapter.AnimalViewHolder>(){
 
@@ -28,6 +30,10 @@ class AnimalsAdapter : RecyclerView.Adapter<AnimalsAdapter.AnimalViewHolder>(){
 
     class AnimalViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item : AnimalModel) {
+            itemView.animal_name.text = item.name
+            itemView.animal_species.text = item.species
+            itemView.animal_age.text = "Wiek: ${item.age}"
+            itemView.animal_sex.setText(item.getSex())
         }
     }
 }

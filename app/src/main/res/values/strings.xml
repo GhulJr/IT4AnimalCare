@@ -38,4 +38,7 @@
     <string name="expire">Wygasa:</string>
     <string name="deadlines">Terminy</string>
     <string name="animals">Zwierzęta</string>
+    <string name="sex_unknown">Nieznana</string>
+    <string name="sex_men">Męska</string>
+    <string name="sex_women">Żeńska</string>
 </resources>
