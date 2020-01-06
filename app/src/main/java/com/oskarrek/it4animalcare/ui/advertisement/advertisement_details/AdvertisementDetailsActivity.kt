@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.ui.animal.animals_list.AnimalsFragment
 import com.oskarrek.it4animalcare.ui.common.deadlines_list.DeadlinesFragment
 import com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment
 import com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment.Companion.SERIALIZABLE_ADVERTISEMENT
@@ -36,6 +37,10 @@ class AdvertisementDetailsActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.deadlines_container, DeadlinesFragment.newInstance())
                 .commitNow()
+
+           supportFragmentManager.beginTransaction()
+               .replace(R.id.animals_container, AnimalsFragment.newInstance())
+               .commitNow()
         }
     }
 }
