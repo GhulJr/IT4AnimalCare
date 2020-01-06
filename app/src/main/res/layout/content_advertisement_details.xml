@@ -8,10 +8,26 @@
     tools:context=".ui.advertisement.advertisement_details.AdvertisementDetailsActivity"
     tools:showIn="@layout/activity_advertisement_details">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+        android:orientation="vertical"
+        android:layout_margin="@dimen/text_margin">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="@string/large_text"
+            android:textSize="@dimen/text_adv_contents" />
+
+        <LinearLayout
+            android:id="@+id/deadlines_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+    </LinearLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>

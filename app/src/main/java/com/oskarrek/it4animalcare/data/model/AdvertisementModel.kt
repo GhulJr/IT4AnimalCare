@@ -6,17 +6,13 @@ data class AdvertisementModel(
     val contents : String,
     val addedTimeSpan : Long,
     val expirationTimeSpan : Long,
-    val localisation : LocalisationModel,
-    val care : CareModel,
-    val deadlines : MutableList<DeadlineModel>
+    val localisation : LocalisationModel
 ) {
     constructor(
         title : String,
         contents : String,
         addedTimeSpan : Long,
         expirationTimeSpan : Long,
-        localisation : LocalisationModel,
-        care : CareModel,
-        deadlines : MutableList<DeadlineModel> )
-            : this(0, title, contents, addedTimeSpan, expirationTimeSpan, localisation, care, deadlines)
+        localisation : LocalisationModel
+        ) : this(0, title, contents, addedTimeSpan, expirationTimeSpan, localisation)
 }

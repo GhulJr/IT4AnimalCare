@@ -55,7 +55,7 @@ class NoticeBoardFragment : Fragment() {
         noticeBoardViewModel = ViewModelUtils.createViewModel(this)
     }
 
-    private fun startAdvertisementDetailsIntent(advertisement : AdvertisementModel) {
+    private fun startAdvertisementDetailsIntent(advertisement: AdvertisementModel) {
         val intent = Intent(context, AdvertisementDetailsActivity::class.java)
         intent.putExtra(SERIALIZABLE_ADVERTISEMENT, advertisement.title) // TODO: pass whole object
         startActivity(intent)

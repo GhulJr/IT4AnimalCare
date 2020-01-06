@@ -37,9 +37,7 @@ object DummyDataUtils {
                         "Piesek i kotek szukają opiekuna na nadchodzące święta!",
                 Calendar.getInstance().timeInMillis,
                 Calendar.getInstance().timeInMillis + 10000,
-                localisation,
-                care,
-                deadlines)
+                localisation)
 
             advertisements.add(advertisement)
         }

@@ -10,4 +10,5 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="title_size">24sp</dimen>
+    <dimen name="text_adv_contents">16sp</dimen>
 </resources>

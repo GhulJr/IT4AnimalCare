@@ -1,13 +1,17 @@
 package com.oskarrek.it4animalcare.ui.common.deadlines_list
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.util.ViewModelUtils
+import kotlinx.android.synthetic.main.fragment_deadlines.view.*
+import kotlinx.android.synthetic.main.fragment_notice_board.view.*
 
 class DeadlinesFragment : Fragment() {
 
@@ -16,18 +20,34 @@ class DeadlinesFragment : Fragment() {
     }
 
     private lateinit var viewModel: DeadlinesViewModel
+    private lateinit var deadlinesAdapter: DeadlinesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_deadlines, container, false)
+        val root = inflater.inflate(R.layout.fragment_deadlines, container, false)
+        setupRecyclerView(root)
+        return root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DeadlinesViewModel::class.java)
-        // TODO: Use the ViewModel
+        setupViewModel()
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelUtils.createViewModel(this)
+    }
+
+    private fun setupRecyclerView(root: View) {
+        deadlinesAdapter = DeadlinesAdapter()
+
+
+        root.deadlines_recyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = deadlinesAdapter
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.data.model.AdvertisementModel
+import com.oskarrek.it4animalcare.ext.asDate
 import com.oskarrek.it4animalcare.ext.asString
 import kotlinx.android.synthetic.main.item_advertisement.view.*
 
@@ -33,8 +34,8 @@ class NoticeBoardAdapter(private val clickListener : (AdvertisementModel) -> (Un
         fun bind(item : AdvertisementModel, clickListener: (AdvertisementModel) -> Unit) {
             itemView.apply {
                 notice_board_title.text = item.title
-                notice_board_animals.text = item.care.toString()
-                notice_board_deadlines.text = item.deadlines.asString()
+                notice_board_animals.text = item.addedTimeSpan.asDate("dd.MM.yy")
+                notice_board_deadlines.text = item.expirationTimeSpan.asDate("dd.MM.yy")
                 notice_board_localisation.text = item.localisation.toString()
 
                 setOnClickListener {clickListener(item)}
