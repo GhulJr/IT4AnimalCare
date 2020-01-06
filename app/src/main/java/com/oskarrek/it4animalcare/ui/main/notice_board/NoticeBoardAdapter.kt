@@ -9,7 +9,7 @@ import com.oskarrek.it4animalcare.data.model.AdvertisementModel
 import com.oskarrek.it4animalcare.ext.asString
 import kotlinx.android.synthetic.main.item_advertisement.view.*
 
-class NoticeBoardAdapter(val clickListener : (AdvertisementModel) -> (Unit) )
+class NoticeBoardAdapter(private val clickListener : (AdvertisementModel) -> (Unit) )
     : RecyclerView.Adapter<NoticeBoardAdapter.AdvertisementViewHolder>() {
 
     var advertisements : List<AdvertisementModel> = emptyList()
