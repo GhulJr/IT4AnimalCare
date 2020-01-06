@@ -21,7 +21,7 @@ class AddAdvertisementFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.add_advertosement_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_add_advertosement, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

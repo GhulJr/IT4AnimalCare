@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.oskarrek.it4animalcare.ui.advertisement.add_edit_advertisement.AddAdvertisementActivity"></activity>
+        <activity
+            android:name=".ui.advertisement.advertisement_details.AdvertisementDetailsActivity"
+            android:label="@string/title_activity_advertisement_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.advertisement.add_edit_advertisement.AddAdvertisementActivity" />
         <activity android:name=".ui.offer.OffersActivity" />
-        <activity android:name="com.oskarrek.it4animalcare.ui.advertisement.users_advertisements.UserAdvertisementsActivity" />
+        <activity android:name=".ui.advertisement.users_advertisements.UserAdvertisementsActivity" />
         <activity android:name=".ui.user.UserActivity" />
         <activity android:name=".ui.animal.AnimalsActivity" />
         <activity android:name=".ui.user.UserDetailsActivity" />

@@ -17,13 +17,15 @@ import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.ui.advertisement.add_edit_advertisement.AddAdvertisementActivity
 import com.oskarrek.it4animalcare.ui.advertisement.users_advertisements.UserAdvertisementsActivity
 import com.oskarrek.it4animalcare.ui.animal.AnimalsActivity
+import com.oskarrek.it4animalcare.ui.animal.animals_list.AnimalsFragment
+import com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment
 import com.oskarrek.it4animalcare.ui.offer.OffersActivity
 import com.oskarrek.it4animalcare.ui.user.UserActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
-   // private lateinit var appBarConfiguration: AppBarConfiguration
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +33,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, NoticeBoardFragment.newInstance())
+                .commitNow()
+        }
+
         setupFab()
         setupNavigationDrawer(toolbar)
 
 }
 
-    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onPostCreate(savedInstanceState, persistentState)
-
-    }
-
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.user, menu)
+        menuInflater.inflate(R.menu.menu_user, menu)
         return true
     }
 

@@ -9,7 +9,7 @@ class AnimalsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.animals_activity)
+        setContentView(R.layout.activity_animals)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, AnimalsFragment.newInstance())
