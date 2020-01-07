@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.oskarrek.it4animalcare">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity
             android:name=".ui.advertisement.advertisement_details.AdvertisementDetailsActivity"
             android:label="@string/title_activity_advertisement_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.advertisement.add_edit_advertisement.AddAdvertisementActivity" />
         <activity android:name=".ui.offer.OffersActivity" />
         <activity android:name=".ui.advertisement.users_advertisements.UserAdvertisementsActivity" />
@@ -30,5 +35,5 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>

@@ -13,6 +13,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Observer
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.ui.advertisement.add_edit_advertisement.AddAdvertisementActivity
 import com.oskarrek.it4animalcare.ui.advertisement.users_advertisements.UserAdvertisementsActivity
@@ -21,11 +22,13 @@ import com.oskarrek.it4animalcare.ui.animal.animals_list.AnimalsFragment
 import com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment
 import com.oskarrek.it4animalcare.ui.offer.OffersActivity
 import com.oskarrek.it4animalcare.ui.user.UserActivity
+import com.oskarrek.it4animalcare.util.ViewModelUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
-
+    lateinit var viewModel : MainViewModel
+    lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,8 +44,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setupFab()
         setupNavigationDrawer(toolbar)
-
-}
+        setupViewModel()
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -54,6 +57,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }*/
+    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
+
+      drawer_layout.closeDrawer(GravityCompat.START)
+
+      val intent : Intent
+
+      when(p0.itemId) {
+          R.id.nav_my_account -> {
+              intent = Intent(this, UserActivity::class.java)
+          }
+          R.id.nav_add_advertisement -> {
+              intent = Intent(this, AddAdvertisementActivity::class.java)
+          }
+          R.id.nav_my_advertisements -> {
+              intent = Intent(this, UserAdvertisementsActivity::class.java)
+          }
+          R.id.nav_my_animals -> {
+              intent = Intent(this, AnimalsActivity::class.java)
+          }
+          R.id.nav_my_offers -> {
+              intent = Intent(this, OffersActivity::class.java)
+          }
+          else -> return super.onOptionsItemSelected(p0)
+      }
+
+      startActivity(intent)
+      return true
+
+  }
 
     /** Utils methods. */
     private fun setupFab() {
@@ -67,7 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     //TODO: refactor to use data binding library.
     private fun setupNavigationDrawer(toolbar : Toolbar) {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        val navView: NavigationView = findViewById(R.id.nav_view)
+        navView = findViewById(R.id.nav_view)
 
         val toggle = ActionBarDrawerToggle(
             this,
@@ -80,36 +112,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
     }
 
-    override fun onNavigationItemSelected(p0: MenuItem): Boolean {
 
-        drawer_layout.closeDrawer(GravityCompat.START)
-
-        val intent : Intent
-
-        when(p0.itemId) {
-            R.id.nav_my_account -> {
-                intent = Intent(this, UserActivity::class.java)
+    private fun setupViewModel()  {
+        viewModel = ViewModelUtils.createViewModel(this)
+        viewModel.loggedUser.observe(this, Observer { user ->
+            run {
+                if (user == null) {
+                    navView.menu.setGroupVisible(R.id.menu_group_signed_in, false)
+                    navView.menu.setGroupVisible(R.id.menu_group_signed_out, true)
+                } else {
+                    navView.menu.setGroupVisible(R.id.menu_group_signed_in, true)
+                    navView.menu.setGroupVisible(R.id.menu_group_signed_out, false)
+                }
             }
-            R.id.nav_add_advertisement -> {
-                intent = Intent(this, AddAdvertisementActivity::class.java)
-            }
-            R.id.nav_my_advertisements -> {
-                intent = Intent(this, UserAdvertisementsActivity::class.java)
-            }
-            R.id.nav_my_animals -> {
-                intent = Intent(this, AnimalsActivity::class.java)
-            }
-            R.id.nav_my_offers -> {
-                intent = Intent(this, OffersActivity::class.java)
-            }
-            else -> return super.onOptionsItemSelected(p0)
-        }
-
-        startActivity(intent)
-        return true
-
+        })
     }
-
-
 
 }

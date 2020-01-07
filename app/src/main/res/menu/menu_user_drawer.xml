@@ -3,32 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single"/>
+    <group
+        android:id="@+id/menu_group_signed_in"
+        android:visible="false">
+        <item
+            android:id="@+id/nav_my_account"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/menu_my_account" />
 
-    <item
-        android:id="@+id/nav_my_account"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="@string/menu_my_account" />
+        <item
+            android:id="@+id/nav_add_advertisement"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_add_advertisement" />
 
-    <item
-        android:id="@+id/nav_add_advertisement"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="@string/menu_add_advertisement" />
+        <item
+            android:id="@+id/nav_my_advertisements"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_my_advertisements" />
 
-    <item
-        android:id="@+id/nav_my_advertisements"
-        android:icon="@drawable/ic_menu_gallery"
-        android:title="@string/menu_my_advertisements" />
+        <item
+            android:id="@+id/nav_my_animals"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_my_animals" />
 
-    <item
-        android:id="@+id/nav_my_animals"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="@string/menu_my_animals" />
+        <item
+            android:id="@+id/nav_my_offers"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_my_offers" />
 
-    <item
-        android:id="@+id/nav_my_offers"
-        android:icon="@drawable/ic_menu_slideshow"
-        android:title="@string/menu_my_offers" />
+        <item
+            android:id="@+id/nav_sign_out"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/menu_sign_out"/>
+    </group>
+
+    <group
+        android:id="@+id/menu_group_signed_out">
+
+        <item
+            android:id="@+id/nav_sign_in"
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/menu_sign_in" />
+    </group>
+
 
 
 </menu>
