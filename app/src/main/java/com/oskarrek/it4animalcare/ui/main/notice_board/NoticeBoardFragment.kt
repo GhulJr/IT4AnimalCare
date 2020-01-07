@@ -43,7 +43,6 @@ class NoticeBoardFragment : Fragment() {
 
     private fun setupRecyclerView(root: View) {
         noticeBoardAdapter = NoticeBoardAdapter { startAdvertisementDetailsIntent(it) }
-            .apply { advertisements = DummyDataUtils.getDummyAdvertisements() }
 
         root.notice_board_recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
