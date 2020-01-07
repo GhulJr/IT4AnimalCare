@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.ui.advertisement.advertisement_details.AdvertisementDetailsActivity
 import com.oskarrek.it4animalcare.ui.common.deadlines_list.DeadlinesAdapter
 import com.oskarrek.it4animalcare.util.ViewModelUtils
 import kotlinx.android.synthetic.main.fragment_animals.view.*
 import kotlinx.android.synthetic.main.fragment_deadlines.view.*
+import java.io.Serializable
 
 class AnimalsFragment : Fragment() {
 
@@ -28,16 +31,21 @@ class AnimalsFragment : Fragment() {
     ): View {
         val root = inflater.inflate(R.layout.fragment_animals, container, false)
         setupRecyclerView(root)
-        return root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         setupViewModel()
+        val id = arguments?.getInt(AdvertisementDetailsActivity.ADVERTISEMENT_ID) ?: -1
+        viewModel.getDeadlines(id)
+        return root
     }
 
     private fun setupViewModel() {
         viewModel = ViewModelUtils.createViewModel(this)
+
+        viewModel.animals.observe(this, Observer {list ->
+            animalsAdapter.apply {
+                animals = list
+                notifyDataSetChanged()
+            }
+        })
     }
 
     private fun setupRecyclerView(root: View) {
@@ -48,5 +56,6 @@ class AnimalsFragment : Fragment() {
             adapter = animalsAdapter
         }
     }
+
 
 }

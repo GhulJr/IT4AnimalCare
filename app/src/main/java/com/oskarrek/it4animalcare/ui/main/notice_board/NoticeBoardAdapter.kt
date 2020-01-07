@@ -35,7 +35,7 @@ class NoticeBoardAdapter(private val clickListener : (AdvertisementModel) -> (Un
             itemView.apply {
                 notice_board_title.text = item.title
                 notice_board_animals.text = item.addedTimeSpan.asDate("dd.MM.yy")
-                notice_board_deadlines.text = item.expirationTimeSpan.asDate("dd.MM.yy")
+                notice_board_deadlines.text = item.expirationTimeSpan?.asDate("dd.MM.yy")
                 notice_board_localisation.text = item.localisation.toString()
 
                 setOnClickListener {clickListener(item)}

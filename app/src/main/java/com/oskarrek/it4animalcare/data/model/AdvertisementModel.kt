@@ -1,13 +1,17 @@
 package com.oskarrek.it4animalcare.data.model
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
+
 data class AdvertisementModel(
-    val id : Int,
-    val title : String,
-    val contents : String,
-    val addedTimeSpan : Long,
-    val expirationTimeSpan : Long,
-    val localisation : LocalisationModel
-) {
+    @Expose @SerializedName("id") val id : Int,
+    @Expose @SerializedName("title") val title : String,
+    @Expose @SerializedName("contents") val contents : String,
+    @Expose @SerializedName("addedTimeSpan") val addedTimeSpan : Long,
+    @Expose @SerializedName("expirationTimeSpan") val expirationTimeSpan : Long?,
+    @Expose @SerializedName("localisation") val localisation : LocalisationModel
+) : Serializable{
     constructor(
         title : String,
         contents : String,

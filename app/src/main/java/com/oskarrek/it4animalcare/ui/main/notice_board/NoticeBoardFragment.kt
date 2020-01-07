@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.data.model.AdvertisementModel
 import com.oskarrek.it4animalcare.ui.advertisement.advertisement_details.AdvertisementDetailsActivity
-import com.oskarrek.it4animalcare.util.DummyDataUtils
 import com.oskarrek.it4animalcare.util.ViewModelUtils
 import kotlinx.android.synthetic.main.fragment_notice_board.view.*
 
@@ -52,11 +52,17 @@ class NoticeBoardFragment : Fragment() {
 
     private fun setupViewModel() {
         noticeBoardViewModel = ViewModelUtils.createViewModel(this)
+        noticeBoardViewModel.advertsements.observe(this, Observer {list ->
+            noticeBoardAdapter.apply {
+                advertisements = list
+                notifyDataSetChanged()
+            }
+        })
     }
 
     private fun startAdvertisementDetailsIntent(advertisement: AdvertisementModel) {
         val intent = Intent(context, AdvertisementDetailsActivity::class.java)
-        intent.putExtra(SERIALIZABLE_ADVERTISEMENT, advertisement.title) // TODO: pass whole object
+        intent.putExtra(SERIALIZABLE_ADVERTISEMENT, advertisement) // TODO: pass whole object
         startActivity(intent)
     }
 }

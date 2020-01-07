@@ -17,7 +17,7 @@ class AnimalsAdapter : RecyclerView.Adapter<AnimalsAdapter.AnimalViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
         return AnimalViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_deadline, parent, false)
+                .inflate(R.layout.item_animal, parent, false)
         )
     }
 

@@ -13,7 +13,7 @@ import retrofit2.create
 
 object RetrofitClientGenerator {
 
-    private val API_BASE_URL = "https://ascendant-bloom-259119.appspot.com/api/"
+    private val API_BASE_URL = "https://ascendant-bloom-259119.appspot.com"
 
     @RequiresApi(Build.VERSION_CODES.N)
     private val okHttpClient = OkHttpClient.Builder().apply {
