@@ -1,11 +1,13 @@
 package com.oskarrek.it4animalcare.ui.login.ui.login
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.data.model.UserModel
+import com.oskarrek.it4animalcare.data.repository.ApiRepository
 import com.oskarrek.it4animalcare.ui.login.data.LoginRepository
 import retrofit2.Response
 
@@ -17,8 +19,14 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     val loginResponse = MutableLiveData<UserModel>()
 
+    @SuppressLint("CheckResult")
     fun login(username: String, password: String) {
-
+        ApiRepository.loginUser(username, password)
+            .subscribe(
+                {success ->
+                    loginResponse.postValue(success.body())},
+                {error ->
+                    error.printStackTrace()})
     }
 
     fun loginDataChanged(username: String, password: String) {

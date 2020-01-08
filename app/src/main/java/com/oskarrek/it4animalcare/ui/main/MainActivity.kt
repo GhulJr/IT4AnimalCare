@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.data.model.UserModel
 import com.oskarrek.it4animalcare.ui.advertisement.add_edit_advertisement.AddAdvertisementActivity
 import com.oskarrek.it4animalcare.ui.advertisement.users_advertisements.UserAdvertisementsActivity
 import com.oskarrek.it4animalcare.ui.animal.AnimalsActivity
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val LOGIN = "LOGIN"
         val PASSWORD = "PASSWORD"
+        val USER = "USER"
     }
 
     private lateinit var viewModel : MainViewModel
@@ -139,13 +142,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        /*if(resultCode == Activity.RESULT_OK) {
+        if(resultCode == Activity.RESULT_OK) {
             if(requestCode == REQUEST_SIGN_IN) {
-                viewModel.login()
+                val user =data?.getSerializableExtra(USER) as UserModel
+                Toast.makeText(this, "Witaj ${user.login}", Toast.LENGTH_SHORT)
+
+                viewModel.loggedUser.postValue(user) //TODO: value should not be posted here
             }
-        }*/
+        }
+        super.onActivityResult(requestCode, resultCode, data)
 
     }
 }

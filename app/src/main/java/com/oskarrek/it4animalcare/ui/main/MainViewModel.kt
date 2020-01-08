@@ -13,7 +13,7 @@ class MainViewModel : ViewModel() {
         loggedUser.postValue(null)
     }
 
-    fun login(login : String, password : String) {
+    fun isLogged(login : String, password : String) {
 
     }
 }

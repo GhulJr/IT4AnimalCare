@@ -16,11 +16,15 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.data.model.UserModel
 import com.oskarrek.it4animalcare.ui.login.register.RegisterActivity
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoggedInUserView
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModel
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModelFactory
+import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.LOGIN
+import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.PASSWORD
 import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.REQUEST_SIGN_IN
+import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.USER
 
 
 class LoginActivity : AppCompatActivity() {
@@ -42,7 +46,8 @@ class LoginActivity : AppCompatActivity() {
         val register = findViewById<Button>(R.id.register)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProviders.of(this,
+        loginViewModel = ViewModelProviders.of(
+            this,
             LoginViewModelFactory()
         )
             .get(LoginViewModel::class.java)
@@ -63,12 +68,16 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.loginResponse.observe(this@LoginActivity, Observer {
             loading.visibility = View.GONE
-            if(it == null) {
-               Toast.makeText(this, "Błędny login lub hasło.", Toast.LENGTH_SHORT).show()
-           }
+            if (it == null) {
+                Toast.makeText(this, "Błędny login lub hasło.", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent()
+                intent.putExtra(USER, it)
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
 
-            setResult(Activity.RESULT_OK)
-            finish()
+
         })
 
         username.afterTextChanged {
@@ -103,7 +112,10 @@ class LoginActivity : AppCompatActivity() {
             }
 
             register.setOnClickListener {
-                startActivityForResult(Intent(this@LoginActivity, RegisterActivity::class.java),REQUEST_REGISTER)
+                startActivityForResult(
+                    Intent(this@LoginActivity, RegisterActivity::class.java),
+                    REQUEST_REGISTER
+                )
             }
         }
     }
@@ -125,6 +137,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == REQUEST_REGISTER) {
+                val user =data?.getSerializableExtra(USER) as UserModel
+                loginViewModel.login(user.login, user.password)
+            }
+        }
     }
 }
 

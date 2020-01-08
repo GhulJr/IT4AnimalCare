@@ -15,6 +15,7 @@ import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
 import com.oskarrek.it4animalcare.ui.login.afterTextChanged
 import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.LOGIN
 import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.PASSWORD
+import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.USER
 import com.oskarrek.it4animalcare.util.RequestUtils
 import com.oskarrek.it4animalcare.util.ViewModelUtils
 import kotlinx.android.synthetic.main.content_register.*
@@ -29,15 +30,37 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        setupViewModel()
-
-
+        //Views.
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val nick = findViewById<EditText>(R.id.nick)
         val email = findViewById<EditText>(R.id.email)
         val phoneNumber = findViewById<EditText>(R.id.phone_number)
 
+        //View model.
+        viewModel = ViewModelUtils.createViewModel(this)
+        viewModel.registerResult.observe(this, Observer {
+            if(it == null) {
+                Toast.makeText(this, "Podany login jest już zajęty lub podano błędny email.", Toast.LENGTH_LONG).show()
+            }
+            else if(it.resultCode == RequestUtils.RESULTCODE_SUCCESS) {
+                val intent = Intent()
+                intent.putExtra(USER, UserModel(
+                    username.text.toString(),
+                    password.text.toString(),
+                    nick.text.toString(),
+                    phoneNumber.text.toString().toInt(),
+                    email.text.toString()))
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+        })
+
+        viewModel.isValid.observe(this, Observer{isValid ->
+            btn_register.isEnabled = isValid
+        })
+
+        //TextChange.
         username.afterTextChanged {
             viewModel.registerDataChanged(
                 username.text.toString(),
@@ -96,15 +119,19 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        viewModel = ViewModelUtils.createViewModel(this)
+        /*viewModel = ViewModelUtils.createViewModel(this)
         viewModel.registerResult.observe(this, Observer {
             if(it == null) {
                 Toast.makeText(this, "Podany login jest już zajęty lub podano błędny email.", Toast.LENGTH_LONG).show()
             }
             else if(it.resultCode == RequestUtils.RESULTCODE_SUCCESS) {
                 val intent = Intent()
-                intent.putExtra(LOGIN, username.text.toString())
-                intent.putExtra(PASSWORD, password.text.toString())
+                intent.putExtra(USER, USER(
+                    username.text.toString(),
+                    password.text.toString(),
+                    nick.text.toString(),
+                    phoneNumber.text.toString().toInt(),
+                    email.text.toString()))
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             }
@@ -112,7 +139,7 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel.isValid.observe(this, Observer{isValid ->
                 btn_register.isEnabled = isValid
-        })
+        })*/
     }
 
 

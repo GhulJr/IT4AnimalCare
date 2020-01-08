@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import com.oskarrek.it4animalcare.data.model.AdvertisementModel
 import com.oskarrek.it4animalcare.data.model.AnimalModel
 import com.oskarrek.it4animalcare.data.model.DeadlineModel
+import com.oskarrek.it4animalcare.data.model.UserModel
 import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
 import com.oskarrek.it4animalcare.data.model.response.RegisterResult
 import com.oskarrek.it4animalcare.data.source.remote.RetrofitClientGenerator
@@ -47,6 +48,13 @@ object ApiRepository {
     fun registerUser(registerRequest : RegisterRequest) : Single<Response<RegisterResult>> {
         return advertisementsApi
             .registerUser(registerRequest)
+            .subscribeOn(Schedulers.single())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun loginUser(username: String, password: String)  : Single<Response<UserModel>> {
+        return advertisementsApi
+            .loginUser(username, password)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }

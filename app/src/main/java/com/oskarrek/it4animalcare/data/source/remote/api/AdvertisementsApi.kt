@@ -1,5 +1,6 @@
 package com.oskarrek.it4animalcare.data.source.remote.api
 
+import com.oskarrek.it4animalcare.data.model.UserModel
 import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
 import com.oskarrek.it4animalcare.data.model.response.GetAdvertisementsResponse
 import com.oskarrek.it4animalcare.data.model.response.GetAnimalsResponse
@@ -7,10 +8,7 @@ import com.oskarrek.it4animalcare.data.model.response.GetDeadlinesResponse
 import com.oskarrek.it4animalcare.data.model.response.RegisterResult
 import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface AdvertisementsApi {
 
@@ -25,4 +23,8 @@ interface AdvertisementsApi {
 
     @POST("/api/logger/register")
     fun registerUser(@Body registerRequest: RegisterRequest) : Single<Response<RegisterResult>>
+
+    @POST("/api/logger/login")
+    fun loginUser(@Field("login") login : String,
+                  @Field("password") password : String) : Single<Response<UserModel>>
 }
