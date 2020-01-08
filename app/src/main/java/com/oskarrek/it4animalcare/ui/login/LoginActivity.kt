@@ -20,9 +20,14 @@ import com.oskarrek.it4animalcare.ui.login.register.RegisterActivity
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoggedInUserView
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModel
 import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModelFactory
+import com.oskarrek.it4animalcare.ui.main.MainActivity.Companion.REQUEST_SIGN_IN
 
 
 class LoginActivity : AppCompatActivity() {
+
+    companion object {
+        val REQUEST_REGISTER = 102
+    }
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -56,19 +61,13 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
-        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
-
+        loginViewModel.loginResponse.observe(this@LoginActivity, Observer {
             loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
-            }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-            }
-            setResult(Activity.RESULT_OK)
+            if(it == null) {
+               Toast.makeText(this, "Błędny login lub hasło.", Toast.LENGTH_SHORT).show()
+           }
 
-            //Complete and destroy login activity once successful
+            setResult(Activity.RESULT_OK)
             finish()
         })
 
@@ -104,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             register.setOnClickListener {
-                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+                startActivityForResult(Intent(this@LoginActivity, RegisterActivity::class.java),REQUEST_REGISTER)
             }
         }
     }
@@ -122,6 +121,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun showLoginFailed(@StringRes errorString: Int) {
         Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
 

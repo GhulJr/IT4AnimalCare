@@ -3,20 +3,19 @@ package com.oskarrek.it4animalcare.ui.login.register
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.oskarrek.it4animalcare.data.model.UserModel
 import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
 import com.oskarrek.it4animalcare.data.model.response.RegisterResult
 import com.oskarrek.it4animalcare.data.repository.ApiRepository
-import io.reactivex.Single
-import retrofit2.HttpException
-import retrofit2.Response
+
 
 class RegisterViewModel : ViewModel() {
 
     val registerResult = MutableLiveData<RegisterResult>()
+    val isValid = MutableLiveData<Boolean>()
 
+    init {
+        isValid.value = false
+    }
 
     @SuppressLint("CheckResult")
     fun registerUser(registerRequest : RegisterRequest) {
@@ -26,4 +25,27 @@ class RegisterViewModel : ViewModel() {
             error.printStackTrace()
         })
     }
+
+    fun registerDataChanged(
+        login : String,
+        password : String,
+        nick : String,
+        email : String,
+        phoneNumber : String
+    ) {
+        isValid.value = when {
+            !isUserNameValid(login) -> false
+            !isPasswordValid(password) -> false
+            !isNickValid(nick) -> false
+            !isEmailValid(email) -> false
+            !isPhoneNumberValid(phoneNumber) -> false
+            else -> true
+        }
+    }
+
+    private fun isUserNameValid(login : String) : Boolean= !(login.isBlank() || login.length < 5)
+    private fun isPasswordValid(password : String) : Boolean = !(password.isBlank() || password.length < 5)
+    private fun isNickValid(nick : String) : Boolean = !(nick.isBlank() || nick.length < 5)
+    private fun isEmailValid(email : String) : Boolean = !(email.isBlank() || email.length < 5)// && (email.contains("@")  && email.contains("."))
+    private fun isPhoneNumberValid(phoneNumber : String) : Boolean = !(phoneNumber.isBlank() || phoneNumber.length < 9)
 }

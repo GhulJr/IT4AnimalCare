@@ -1,5 +1,6 @@
 package com.oskarrek.it4animalcare.ui.main
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,6 +29,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     companion object {
         val REQUEST_SIGN_IN = 101
+
+        val LOGIN = "LOGIN"
+        val PASSWORD = "PASSWORD"
     }
 
     private lateinit var viewModel : MainViewModel
@@ -136,6 +140,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        /*if(resultCode == Activity.RESULT_OK) {
+            if(requestCode == REQUEST_SIGN_IN) {
+                viewModel.login()
+            }
+        }*/
 
     }
 }
