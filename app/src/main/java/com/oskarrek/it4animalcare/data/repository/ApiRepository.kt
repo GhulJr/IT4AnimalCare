@@ -7,8 +7,9 @@ import com.oskarrek.it4animalcare.data.model.AdvertisementModel
 import com.oskarrek.it4animalcare.data.model.AnimalModel
 import com.oskarrek.it4animalcare.data.model.DeadlineModel
 import com.oskarrek.it4animalcare.data.model.UserModel
+import com.oskarrek.it4animalcare.data.model.request.LoginRequest
 import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
-import com.oskarrek.it4animalcare.data.model.response.RegisterResult
+import com.oskarrek.it4animalcare.data.model.response.ApiResult
 import com.oskarrek.it4animalcare.data.source.remote.RetrofitClientGenerator
 import com.oskarrek.it4animalcare.data.source.remote.api.AdvertisementsApi
 import io.reactivex.Single
@@ -45,16 +46,24 @@ object ApiRepository {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun registerUser(registerRequest : RegisterRequest) : Single<Response<RegisterResult>> {
+    fun registerUser(registerRequest : RegisterRequest) : Single<Response<ApiResult>> {
         return advertisementsApi
             .registerUser(registerRequest)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    fun loginUser(username: String, password: String)  : Single<Response<UserModel>> {
+    fun loginUser(loginRequest : LoginRequest)  : Single<UserModel?> {
         return advertisementsApi
-            .loginUser(username, password)
+            .loginUser(loginRequest)
+            .subscribeOn(Schedulers.single())
+            .map {it.body()?.get(0)}
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun logoutUser(login : String) : Single<ApiResult> {
+        return  advertisementsApi
+            .logoutUser(login)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
     }

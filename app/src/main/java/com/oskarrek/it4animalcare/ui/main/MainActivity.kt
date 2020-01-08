@@ -26,6 +26,7 @@ import com.oskarrek.it4animalcare.ui.offer.OffersActivity
 import com.oskarrek.it4animalcare.ui.user.UserActivity
 import com.oskarrek.it4animalcare.util.ViewModelUtils
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_header_user.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
@@ -77,6 +78,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
               startActivityForResult(intent, REQUEST_SIGN_IN)
               return true
           }
+          R.id.nav_sign_out -> {
+              viewModel.signOut()
+              return true
+          }
           R.id.nav_my_account -> {
               intent = Intent(this, UserActivity::class.java)
           }
@@ -92,6 +97,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
           R.id.nav_my_offers -> {
               intent = Intent(this, OffersActivity::class.java)
           }
+
           else -> return super.onOptionsItemSelected(p0)
       }
 
@@ -133,9 +139,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if (user == null) {
                     navView.menu.setGroupVisible(R.id.menu_group_signed_in, false)
                     navView.menu.setGroupVisible(R.id.menu_group_signed_out, true)
+                    user_login.text = ""
+                    user_email.text = ""
+                    Toast.makeText(this, "Wylogowano", Toast.LENGTH_SHORT).show()
+
                 } else {
                     navView.menu.setGroupVisible(R.id.menu_group_signed_in, true)
                     navView.menu.setGroupVisible(R.id.menu_group_signed_out, false)
+                    user_login.text = user.login
+                    user_email.text = user.email
                 }
             }
         })
@@ -146,7 +158,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(resultCode == Activity.RESULT_OK) {
             if(requestCode == REQUEST_SIGN_IN) {
                 val user =data?.getSerializableExtra(USER) as UserModel
-                Toast.makeText(this, "Witaj ${user.login}", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Witaj ${user.login}", Toast.LENGTH_SHORT).show()
+
+
 
                 viewModel.loggedUser.postValue(user) //TODO: value should not be posted here
             }

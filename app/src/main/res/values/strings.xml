@@ -47,8 +47,9 @@
     <string name="action_sign_in">Zaloguj się</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="invalid_username">Błędny login
+    </string>
+    <string name="invalid_password">Minimalna długość hasła powinna zawierać >6 znaków</string>
     <string name="login_failed">"Login failed"</string>
     <string name="menu_sign_out">Wyloguj</string>
     <string name="menu_sign_in">Zaloguj</string>

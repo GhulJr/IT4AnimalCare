@@ -4,13 +4,13 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.oskarrek.it4animalcare.data.model.request.RegisterRequest
-import com.oskarrek.it4animalcare.data.model.response.RegisterResult
+import com.oskarrek.it4animalcare.data.model.response.ApiResult
 import com.oskarrek.it4animalcare.data.repository.ApiRepository
 
 
 class RegisterViewModel : ViewModel() {
 
-    val registerResult = MutableLiveData<RegisterResult>()
+    val registerResult = MutableLiveData<ApiResult>()
     val isValid = MutableLiveData<Boolean>()
 
     init {
@@ -44,7 +44,7 @@ class RegisterViewModel : ViewModel() {
     }
 
     private fun isUserNameValid(login : String) : Boolean= !(login.isBlank() || login.length < 5)
-    private fun isPasswordValid(password : String) : Boolean = !(password.isBlank() || password.length < 5)
+    private fun isPasswordValid(password : String) : Boolean = !(password.isBlank() || password.length < 7)
     private fun isNickValid(nick : String) : Boolean = !(nick.isBlank() || nick.length < 5)
     private fun isEmailValid(email : String) : Boolean = !(email.isBlank() || email.length < 5)// && (email.contains("@")  && email.contains("."))
     private fun isPhoneNumberValid(phoneNumber : String) : Boolean = !(phoneNumber.isBlank() || phoneNumber.length < 9)

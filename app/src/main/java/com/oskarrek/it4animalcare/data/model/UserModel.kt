@@ -9,14 +9,14 @@ data class UserModel (
     @Expose @SerializedName("login") val login : String,
     @Expose @SerializedName("haslo")val password : String,
     @Expose @SerializedName("nick")val nick : String,
-    @Expose @SerializedName("numerTelefonu")val phoneNumber : Int,
+    @Expose @SerializedName("numerTelefonu")val phoneNumber : Int?,
     @Expose @SerializedName("email")val email : String
 ): Serializable {
     constructor(
         login: String,
         password: String,
         nick: String,
-        phoneNumber: Int,
+        phoneNumber: Int?,
         email: String
     ) : this(0, login, password, nick, phoneNumber, email)
 }

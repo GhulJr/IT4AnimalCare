@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import android.util.Patterns
 import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.data.model.UserModel
+import com.oskarrek.it4animalcare.data.model.request.LoginRequest
 import com.oskarrek.it4animalcare.data.repository.ApiRepository
 import com.oskarrek.it4animalcare.ui.login.data.LoginRepository
 import retrofit2.Response
@@ -21,11 +22,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     @SuppressLint("CheckResult")
     fun login(username: String, password: String) {
-        ApiRepository.loginUser(username, password)
+        ApiRepository.loginUser(LoginRequest(username, password))
             .subscribe(
                 {success ->
-                    loginResponse.postValue(success.body())},
+                    loginResponse.postValue(success)},
                 {error ->
+                    loginResponse.postValue(null)
                     error.printStackTrace()})
     }
 
@@ -50,6 +52,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.length > 6
     }
 }
