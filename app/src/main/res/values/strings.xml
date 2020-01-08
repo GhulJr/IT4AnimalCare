@@ -57,4 +57,5 @@
     <string name="prompt_nick">Nick</string>
     <string name="prompt_email">E-mail</string>
     <string name="prompt_phone_number">Numer telefonu</string>
+    <string name="add_animal">Dodaj zwierze</string>
 </resources>

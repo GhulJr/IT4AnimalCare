@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,12 +12,29 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/animals"
-            android:layout_margin="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/animals"
+                android:layout_margin="8dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+            <ImageButton
+                android:id="@+id/btn_add_animal"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu_send"
+                android:layout_gravity="right"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/animals_recyclerView"
