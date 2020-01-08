@@ -1,6 +1,7 @@
-package com.oskarrek.it4animalcare.ui.login.ui.login
+package com.oskarrek.it4animalcare.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,6 +16,10 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.oskarrek.it4animalcare.R
+import com.oskarrek.it4animalcare.ui.login.register.RegisterActivity
+import com.oskarrek.it4animalcare.ui.login.ui.login.LoggedInUserView
+import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModel
+import com.oskarrek.it4animalcare.ui.login.ui.login.LoginViewModelFactory
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,9 +34,12 @@ class LoginActivity : AppCompatActivity() {
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
+        val register = findViewById<Button>(R.id.register)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProviders.of(this,
+            LoginViewModelFactory()
+        )
             .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
@@ -93,6 +101,10 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+
+            register.setOnClickListener {
+                startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
         }
     }

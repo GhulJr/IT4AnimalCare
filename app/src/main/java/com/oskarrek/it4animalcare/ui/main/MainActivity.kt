@@ -2,7 +2,6 @@ package com.oskarrek.it4animalcare.ui.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,7 +17,7 @@ import com.oskarrek.it4animalcare.R
 import com.oskarrek.it4animalcare.ui.advertisement.add_edit_advertisement.AddAdvertisementActivity
 import com.oskarrek.it4animalcare.ui.advertisement.users_advertisements.UserAdvertisementsActivity
 import com.oskarrek.it4animalcare.ui.animal.AnimalsActivity
-import com.oskarrek.it4animalcare.ui.animal.animals_list.AnimalsFragment
+import com.oskarrek.it4animalcare.ui.login.LoginActivity
 import com.oskarrek.it4animalcare.ui.main.notice_board.NoticeBoardFragment
 import com.oskarrek.it4animalcare.ui.offer.OffersActivity
 import com.oskarrek.it4animalcare.ui.user.UserActivity
@@ -27,8 +26,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
-    lateinit var viewModel : MainViewModel
-    lateinit var navView: NavigationView
+    companion object {
+        val REQUEST_SIGN_IN = 101
+    }
+
+    private lateinit var viewModel : MainViewModel
+    private lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,12 +61,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }*/
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-
       drawer_layout.closeDrawer(GravityCompat.START)
-
       val intent : Intent
 
       when(p0.itemId) {
+          R.id.nav_sign_in -> {
+              intent = Intent(this, LoginActivity::class.java)
+              startActivityForResult(intent, REQUEST_SIGN_IN)
+              return true
+          }
           R.id.nav_my_account -> {
               intent = Intent(this, UserActivity::class.java)
           }
@@ -128,4 +134,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+    }
 }

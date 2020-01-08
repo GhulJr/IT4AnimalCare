@@ -1,4 +1,8 @@
 package com.oskarrek.it4animalcare.data.model.response
 
-class RegisterResult {
-}
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+data class RegisterResult(
+    @SerializedName("resultCode") val resultCode : Int,
+    @SerializedName("message") val message : String)

@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.register.RegisterActivity">
 
+    <include layout="@layout/content_register"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
